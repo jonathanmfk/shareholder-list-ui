@@ -34,16 +34,16 @@ export class ShareholderListUi extends LitElement {
 
   constructor() {
     super();
-    this.isRender = false;
-    this.shareholders = [];
+    this.isRender = true;
+    this.shareholders = [ ];
   }
 
   static get styles() {
     return [ styles, getComponentSharedStyles('shareholder-list-ui-shared-styles') ];
   }
 
-  nextToPage(nit, tipoDocumento) {
-    this._fireEvent('go-to-next', { nit, tipoDocumento });
+  nextToPage(documento, tipoDocumento) {
+    this._fireEvent('go-to-next', { documento, tipoDocumento });
   }
 
   /**
@@ -62,7 +62,7 @@ export class ShareholderListUi extends LitElement {
       clip-image="${null}"
       heading="${element.Nombre}"
       status="Participación: ${element.Porcentaje}"
-      @click="${() => this.nextToPage(element.NIT, element.TipoDocumento)}"
+      @click="${() => this.nextToPage(element.Documento, element.TipoDocumento)}"
       >
       <div class="mb-0-5">
       ${element.TipoDocumento == TIPO_DOCUMENTO.CC ? 'C.C: ' + element.Documento : 'NIT: ' + element.NIT}
