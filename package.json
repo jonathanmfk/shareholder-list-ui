@@ -1,0 +1,38 @@
+{
+  "name": "@gema-ui/shareholder-list-ui",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "cells lit-component:serve",
+    "test": "cells lit-component:test",
+    "lint": "cells lit-component:lint"
+  },
+  "keywords": [],
+  "exports": {
+    ".": "./index.js",
+    "./shareholder-list-ui.js": "./shareholder-list-ui.js"
+  },
+  "main": "index.js",
+  "type": "module",
+  "files": [
+    "/src/",
+    "/locales/",
+    "*.js",
+    "!**/*.scss"
+  ],
+  "dependencies": {
+    "@bbva-web-components/bbva-core-lit-helpers": "^1.0.0",
+    "@bbva-web-components/bbva-foundations-styles": "^2.0.0",
+    "@bbva-web-components/bbva-web-divider": "^1.0.7",
+    "@bbva-web-components/bbva-web-list-item-clip": "^1.1.9",
+    "lit-element": "^2.0.0",
+    "lit-html": "^1.0.0"
+  },
+  "devDependencies": {
+    "@bbva-web-components/bbva-dev-demo-helper": "^0.1.0",
+    "@bbva-web-components/bbva-foundations-sass": "^1.0.0",
+    "@bbva-web-components/bbva-foundations-theme": "^2.0.0",
+    "@open-wc/testing": "^3.0.0"
+  },
+  "customElements": "custom-elements.json"
+}
