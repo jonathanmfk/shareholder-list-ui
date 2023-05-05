@@ -34,86 +34,25 @@ export class ShareholderListUi extends LitElement {
 
   constructor() {
     super();
-    this.isRender = true;
-    this.shareholders = [
-      {
-        NIT: '80808080',
-        Nombre: 'Lucia Gaviria',
-        TipoDocumento: 'CC',
-        Documento: 10282952,
-        Porcentaje: '25%'
-      },
-      {
-        NIT: '80808080',
-        Nombre: 'Catalina Orjuela',
-        TipoDocumento: 'CC',
-        Documento: 10282537,
-        Porcentaje: '25%'
-      },
-      {
-        NIT: '80808080',
-        Nombre: 'Manofacturas S.A.S',
-        TipoDocumento: 'NIT',
-        Documento: 10282353,
-        CantidadAccionitas: 5,
-        Porcentaje: '8%'
-      },
-      {
-        NIT: '80808080',
-        Nombre: 'Daniel Rojas',
-        TipoDocumento: 'CC',
-        Documento: 10282356,
-        Porcentaje: '22%'
-      },
-      {
-        NIT: '80808080',
-        Nombre: 'Arturo Henao',
-        TipoDocumento: 'CC',
-        Documento: 10282340,
-        Porcentaje: '11%'
-      },
-
-      {
-        NIT: '90909090',
-        Nombre: 'Augusto Garcia',
-        TipoDocumento: 'CC',
-        Documento: 10282910,
-        Porcentaje: '20%'
-      },
-      {
-        NIT: '90909090',
-        Nombre: 'Catalina Rodriguez',
-        TipoDocumento: 'CC',
-        Documento: 10282511,
-        Porcentaje: '10%'
-      },
-      {
-        NIT: '90909090',
-        Nombre: 'Pinturas S.A.S',
-        TipoDocumento: 'NIT',
-        Documento: 10282312,
-        CantidadAccionitas: 5,
-        Porcentaje: '15%'
-      },
-      {
-        NIT: '90909090',
-        Nombre: 'Daniel Rojas',
-        TipoDocumento: 'CC',
-        Documento: 10282313,
-        Porcentaje: '9%'
-      },
-      {
-        NIT: '90909090',
-        Nombre: 'Ana sofia Enao',
-        TipoDocumento: 'CC',
-        Documento: 10282314,
-        Porcentaje: '40%'
-      }
-    ];
+    this.isRender = false;
+    this.shareholders = [];
   }
 
   static get styles() {
     return [ styles, getComponentSharedStyles('shareholder-list-ui-shared-styles') ];
+  }
+
+  nextToPage(nit, tipoDocumento) {
+    this._fireEvent('go-to-next', { nit, tipoDocumento });
+  }
+
+  /**
+   * Fires event
+   * @param {String} nameEvent
+   * @param {Object} detail
+   */
+  _fireEvent(nameEvent, detail = {}) {
+    this.dispatchEvent(new CustomEvent(nameEvent, { bubbles: true, composed: true, detail: detail }));
   }
 
   _listShareholdersRender() {
@@ -123,7 +62,7 @@ export class ShareholderListUi extends LitElement {
       clip-image="${null}"
       heading="${element.Nombre}"
       status="Participación: ${element.Porcentaje}"
-      @click="${() => this.nextToPage(element.NIT)}"
+      @click="${() => this.nextToPage(element.NIT, element.TipoDocumento)}"
       >
       <div class="mb-0-5">
       ${element.TipoDocumento == TIPO_DOCUMENTO.CC ? 'C.C: ' + element.Documento : 'NIT: ' + element.NIT}
@@ -137,14 +76,6 @@ export class ShareholderListUi extends LitElement {
   }
 
   render() {
-    return html`
-    <div class="row">
-      <h2>Accionistas</h2>
-      <div class="ml-0-5">
-        <h4 class="opacity-grey">(2 of 5)</h4>
-      </div>
-    </div>
-    <h4>Esta es la información sobre los accionistas de tu empresa</h4>
-    ${this.isRender ? this._listShareholdersRender() : html``}`;
+    return html`${this.isRender ? this._listShareholdersRender() : html``}`;
   }
 }

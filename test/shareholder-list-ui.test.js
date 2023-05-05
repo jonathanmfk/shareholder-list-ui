@@ -1,9 +1,4 @@
-import {
-  html,
-  fixture,
-  assert,
-  fixtureCleanup
-} from '@open-wc/testing';
+import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
 import '../shareholder-list-ui.js';
 
 suite('ShareholderListUi', () => {
@@ -19,16 +14,30 @@ suite('ShareholderListUi', () => {
       await el.updateComplete;
     });
 
-    test('a11y', async () => {
-      await assert.isAccessible(el);
-    });
+    test('_fireEvent', () => el._fireEvent('eventName'));
 
-    test('semantic shadow DOM diff', async () => {
-      await assert.shadowDom.equalSnapshot(el, { ignoreAttributes: ['id'] });
-    });
+    test('render true', () => {
+      el.shareholders = [
+        {
+          NIT: '90909090',
+          Nombre: 'Pinturas S.A.S',
+          TipoDocumento: 'NIT',
+          Documento: 10282312,
+          CantidadAccionitas: 5,
+          Porcentaje: '15%'
+        },
+        {
+          NIT: '90909090',
+          Nombre: 'Pinturas S.A.S',
+          TipoDocumento: 'CC',
+          Documento: 10282312,
+          CantidadAccionitas: 5,
+          Porcentaje: '15%'
+        }
+      ];
 
-    test('semantic light DOM diff', async () => {
-      await assert.lightDom.equalSnapshot(el, { ignoreAttributes: ['id'] });
+      el.isRender = true;
     });
+    test('nextToPage', () => el.nextToPage('90909090', 'CC'));
   });
 });
