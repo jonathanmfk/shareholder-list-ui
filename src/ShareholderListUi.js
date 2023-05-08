@@ -1,11 +1,12 @@
 import { LitElement, html } from 'lit-element';
+import { bbvaBuilding } from '@bbva-web-components/bbva-foundations-icons/bbva-foundations-icons.js';
 import { getComponentSharedStyles } from '@bbva-web-components/bbva-core-lit-helpers';
 import styles from './shareholder-list-ui.css.js';
 
 import '@bbva-web-components/bbva-web-divider/bbva-web-divider.js';
 import '@bbva-web-components/bbva-web-list-item-clip/bbva-web-list-item-clip.js';
-import { bbvaBuilding } from '@bbva-web-components/bbva-foundations-icons/bbva-foundations-icons.js';
 import '@bbva-web-components/bbva-web-clip-box/bbva-web-clip-box.js';
+
 const TIPO_DOCUMENTO = {
   CC: 'CC',
   NIT: 'NIT'
@@ -47,7 +48,9 @@ export class ShareholderListUi extends LitElement {
   getInicialLetters(name) {
     const split = name.split(' ');
     let inicials = '';
-    split.forEach((s) => (inicials += s.charAt(0).toUpperCase()));
+    for (let i = 0; i < split.length; i += 1) {
+      inicials += split[i].charAt(0).toUpperCase();
+    }
     return inicials;
   }
 
@@ -61,7 +64,7 @@ export class ShareholderListUi extends LitElement {
    * @param {Object} detail
    */
   _fireEvent(nameEvent, detail = {}) {
-    this.dispatchEvent(new CustomEvent(nameEvent, { bubbles: true, composed: true, detail: detail }));
+    this.dispatchEvent(new CustomEvent(nameEvent, { bubbles: true, composed: true, detail }));
   }
 
   _listShareholdersRender() {
@@ -73,7 +76,7 @@ export class ShareholderListUi extends LitElement {
       @click="${() => this.nextToPage(element)}">
 
       <div slot="image">
-        ${element.TipoDocumento == TIPO_DOCUMENTO.NIT
+        ${element.TipoDocumento === TIPO_DOCUMENTO.NIT
           ? html`<bbva-web-clip-box icon="${bbvaBuilding()}" label="building" variant="aqua"></bbva-web-clip-box>`
           : html`<bbva-web-clip-box initials="${this.getInicialLetters(element.Nombre)}"></bbva-web-clip-box>`}
       </div>

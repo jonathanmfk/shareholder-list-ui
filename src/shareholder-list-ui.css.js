@@ -1,17 +1,19 @@
-import { css, unsafeCSS } from 'lit-element';
-import * as foundations from '@bbva-web-components/bbva-foundations-styles';
+import { css } from 'lit-element';
 
 export default css`
-:host {
-  display: block;
-  box-sizing: border-box;
-}
+  :host {
+    display: block;
+    box-sizing: border-box;
+  }
 
-:host([hidden]), [hidden] {
-  display: none !important;
-}
+  :host([hidden]),
+  [hidden] {
+    display: none !important;
+  }
 
-*, *::before, *::after {
-  box-sizing: inherit;
-}
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
 `;
