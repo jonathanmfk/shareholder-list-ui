@@ -14,21 +14,4 @@ export default css`
 *, *::before, *::after {
   box-sizing: inherit;
 }
-
-.mb-0-5 {
-  margin-bottom: 0.5rem;
-}
-
-.ml-0-5 {
-  margin-left: 0.5rem;
-}
-
-.row {
-  display: flex;
-  align-items: baseline;
-}
-
-.opacity-grey {
-  color: rgba(52, 52, 52, 0.5176470588);
-}
 `;

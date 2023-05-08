@@ -22,7 +22,9 @@
   ],
   "dependencies": {
     "@bbva-web-components/bbva-core-lit-helpers": "^1.0.0",
+    "@bbva-web-components/bbva-foundations-icons": "^1.18.0",
     "@bbva-web-components/bbva-foundations-styles": "^2.0.0",
+    "@bbva-web-components/bbva-web-clip-box": "^1.1.4",
     "@bbva-web-components/bbva-web-divider": "^1.0.7",
     "@bbva-web-components/bbva-web-list-item-clip": "^1.1.9",
     "lit-element": "^2.0.0",
