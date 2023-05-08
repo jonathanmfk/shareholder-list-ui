@@ -1,4 +1,4 @@
-import { html, fixture, assert, fixtureCleanup } from '@open-wc/testing';
+import { html, fixture, fixtureCleanup } from '@open-wc/testing';
 import '../shareholder-list-ui.js';
 
 suite('ShareholderListUi', () => {

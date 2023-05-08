@@ -36,24 +36,8 @@ export class ShareholderListUi extends LitElement {
 
   constructor() {
     super();
-    this.isRender = true;
-    this.shareholders = [
-      {
-        NIT: '80808080',
-        Nombre: 'Lucia Gaviria',
-        TipoDocumento: 'CC',
-        Documento: 10282952,
-        Porcentaje: '25%'
-      },
-      {
-        NIT: '80808080',
-        Nombre: 'Manofacturas S.A.S',
-        TipoDocumento: 'NIT',
-        Documento: 10282353,
-        CantidadAccionitas: 5,
-        Porcentaje: '8%'
-      }
-    ];
+    this.isRender = false;
+    this.shareholders = [];
   }
 
   static get styles() {
@@ -82,9 +66,8 @@ export class ShareholderListUi extends LitElement {
 
   _listShareholdersRender() {
     return this.shareholders.map(
-      (element) =>
-        html`<bbva-web-list-item-clip
-      clip-image="${null}"
+      (element, i) =>
+        html`<bbva-web-list-item-clip id="item-clip-${i}"
       heading="${element.Nombre}"
       status="Participación: ${element.Porcentaje}"
       @click="${() => this.nextToPage(element)}">
@@ -96,9 +79,9 @@ export class ShareholderListUi extends LitElement {
       </div>
 
       <div class="mb-0-5">
-      ${element.TipoDocumento == TIPO_DOCUMENTO.CC ? 'C.C: ' + element.Documento : 'NIT: ' + element.NIT}
+        ${element.TipoDocumento === TIPO_DOCUMENTO.CC ? `C.C: ${element.Documento}` : `NIT: ${element.NIT}`}
       </div>
-      ${element.TipoDocumento == TIPO_DOCUMENTO.NIT ? element.CantidadAccionitas + ' accionistas' : ''}
+      ${element.TipoDocumento === TIPO_DOCUMENTO.NIT ? `${element.CantidadAccionitas} accionistas` : ''}
 
       </bbva-web-list-item-clip>
       <bbva-web-divider></bbva-web-divider>
